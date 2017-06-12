@@ -30,7 +30,7 @@
     Copyright = '(c) 2017 Lipkau. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description = ''
+    Description = 'This module implements helper functions that allow you to set parameters to a context. The parameters provided will be spread across the commands in the context.'
 
     # Minimum version of the Windows PowerShell engine required by this module
     # PowerShellVersion = ''
