@@ -2,7 +2,7 @@
 # Dot source this script in any Pester test script that requires the module to be imported.
 
 $ModuleName = 'Spread'
-$ModuleManifestPath = "$PSScriptRoot\..\$ModuleName\$ModuleManifestName.psd1"
+$ModuleManifestPath = "$PSScriptRoot\..\$ModuleName\$ModuleName.psd1"
 $RootModule = "$PSScriptRoot\..\$ModuleName\$ModuleName.psm1"
 
 # The first time this is called, the module will be forcibly (re-)imported.

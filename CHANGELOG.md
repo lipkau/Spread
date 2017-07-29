@@ -1,7 +1,2 @@
-## 0.1.0.0
-
-FEATURES:
-
-IMPROVEMENTS:
-
-BUG FIXES:
+## 1.0.0 [2017-07-29]
+Initial release
