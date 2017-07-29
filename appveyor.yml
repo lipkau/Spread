@@ -10,7 +10,7 @@ environment:
     PSGalleryAPIKey:
         secure: s9Uw6gnBI2xdDYtpJE5m8C3eDvrXBDGO/abptsu9NCtCrdxoU/N+3YfjffOTysw+
 
-version: 1.0.0.{build}
+version: 1.1.0.{build}
 
 # Don't rebuild when I tag a release on GitHub
 skip_tags: true

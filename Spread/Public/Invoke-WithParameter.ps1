@@ -1,5 +1,4 @@
-function Invoke-WithParameter
-{
+function Invoke-WithParameter {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
@@ -9,28 +8,24 @@ function Invoke-WithParameter
         $Parameter
     )
 
-    End
-    {
-        # Initialize local instance
-        $PSDefaultParameterValues = @{}
+    End {
+        # Initialize local instance with global values
+        $PSDefaultParameterValues = $global:PSDefaultParameterValues
 
-        while($Parameter)
-        {
+        while ($Parameter) {
             # Spread & Shift
             $param, $value, $Parameter = $Parameter
 
             # Clean $param from `-` delim and support `Function:Param`
             $param = $param.trimStart("-").trimEnd(":")
 
-            if($param -notmatch ":")
-            {
+            if ($param -notmatch ":") {
                 $param = "*:" + $param
             }
 
             $PSDefaultParameterValues[$param] = $value
         }
-        if ($DebugPreference -ne "SilentlyContinue")
-        {
+        if ($DebugPreference -ne "SilentlyContinue") {
             $PSDefaultParameterValues | Out-Default
         }
 
