@@ -119,7 +119,7 @@ InModuleScope Spread {
 
             It 'allows for parameters to affect all relevant commands' {
                 $scriptblock = { Get-Verb | Format-Wide }
-                { Invoke-WithParameter $scriptblock Column 3 *:Verb "I*"} | Should Not Throw
+                { Invoke-WithParameter $scriptblock Column 3 *:Verb "I*" } | Should Not Throw
 
                 Assert-MockCalled -CommandName Get-Verb -ParameterFilter {$Verb -eq "I*"} -Scope It
                 Assert-MockCalled -CommandName Format-Wide -ParameterFilter {$Column -eq 3} -Scope It
@@ -127,10 +127,16 @@ InModuleScope Spread {
 
             It 'allows for parameter names to be declared with leading dash' {
                 $scriptblock = { Get-Verb | Format-Wide }
-                { Invoke-WithParameter $scriptblock -Column 3 -"Verb" "I*"} | Should Not Throw
+                { Invoke-WithParameter $scriptblock -Column 3 -"Verb" "I*" } | Should Not Throw
 
                 Assert-MockCalled -CommandName Get-Verb -ParameterFilter {$Verb -eq "I*"} -Scope It
                 Assert-MockCalled -CommandName Format-Wide -ParameterFilter {$Column -eq 3} -Scope It
+            }
+
+            It 'does not change the global PSDefaultParameterValues' {
+                $PSDefaultParameterValues.ContainsKey("*:Name") | Should Be $false
+                { Invoke-WithParameter -ScriptBlock {} Name '*y*' } | Should Not Throw
+                $PSDefaultParameterValues.ContainsKey("*:Name") | Should Be $false
             }
 
         }

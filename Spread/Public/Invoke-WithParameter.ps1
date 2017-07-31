@@ -9,8 +9,12 @@ function Invoke-WithParameter {
     )
 
     End {
-        # Initialize local instance with global values
-        $PSDefaultParameterValues = $global:PSDefaultParameterValues
+        # Initialize empty instance of PSDefaultParameterValues
+        $PSDefaultParameterValues = @{}
+        # Add global PSDefaultParameterValues to local instance
+        foreach ($Key in $global:PSDefaultParameterValues.Keys) {
+            $PSDefaultParameterValues[$Key] = $global:PSDefaultParameterValues[$Key]
+        }
 
         while ($Parameter) {
             # Spread & Shift
